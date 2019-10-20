@@ -5,11 +5,12 @@ const Text = ({ value, width, changeEvent = () => {} }) => {
   const style = {
     width: { width }
   };
+
   return (
     <input
       type="text"
       value={value}
-      onChange={() => changeEvent()}
+      onChange={e => changeEvent(e)}
       style={style}
     />
   );
