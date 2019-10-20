@@ -1,7 +1,7 @@
 import React from "react";
 import "./index.scss";
 
-const Input = ({ value, width, changeEvent = () => {} }) => {
+const Text = ({ value, width, changeEvent = () => {} }) => {
   const style = {
     width: { width }
   };
@@ -15,4 +15,4 @@ const Input = ({ value, width, changeEvent = () => {} }) => {
   );
 };
 
-export default Input;
+export default Text;
