@@ -1,0 +1,16 @@
+div.list {
+  li {
+    margin: 10px 0;
+    font-size: calc(10px + 1.5vmin);
+    span.todo-value {
+      display: inline-flex;
+      width: 400px;
+    }
+    button {
+      margin: 0 2px;
+      float: right;
+      background-color: #282c34;
+      color: white;
+    }
+  }
+}
