@@ -1,7 +1,12 @@
 import React from "react";
 import "./index.scss";
 
-const Text = ({ value, width, changeEvent = () => {} }) => {
+const Text = ({
+  value,
+  width,
+  enterEvent = () => {},
+  changeEvent = () => {}
+}) => {
   const style = {
     width: { width }
   };
@@ -11,6 +16,7 @@ const Text = ({ value, width, changeEvent = () => {} }) => {
       type="text"
       value={value}
       onChange={e => changeEvent(e)}
+      onKeyDown={e => enterEvent(e)}
       style={style}
     />
   );

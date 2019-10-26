@@ -1,6 +1,6 @@
 import React from "react";
 import List from "./list";
-import Register from "./register";
+import RegisterContainer from "containers/todo/register";
 import "./index.scss";
 
 const Todo = () => {
@@ -11,7 +11,7 @@ const Todo = () => {
     <div className={"todo " + className}>
       <div className="todo-header">
         Simple React Todo
-        <Register />
+        <RegisterContainer />
       </div>
       <div className="todo-body">{list}</div>
     </div>

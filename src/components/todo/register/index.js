@@ -13,10 +13,23 @@ class Register extends Component {
     });
   };
 
+  addTodo = e => {
+    if (e.keyCode === 13) {
+      this.props.create(this.state.content);
+      this.setState({
+        content: ""
+      });
+    }
+  };
+
   render() {
     return (
       <div className="register">
-        <Text value={this.state.content} changeEvent={this.textChange} />
+        <Text
+          value={this.state.content}
+          changeEvent={this.textChange}
+          enterEvent={this.addTodo}
+        />
       </div>
     );
   }
