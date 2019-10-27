@@ -17,7 +17,10 @@ export default handleActions(
       return produce(state, draftState => {});
     },
     [types.REMOVE]: (state, action) => {
-      return produce(state, draftState => {});
+      return produce(state, draftState => {
+        const index = action.payload;
+        draftState.splice(index, 1);
+      });
     }
   },
   initialState

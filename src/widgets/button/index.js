@@ -3,7 +3,7 @@ import "./index.scss";
 
 const Button = ({ value, style, clickEvent }) => {
   return (
-    <button style={style} onClick={clickEvent}>
+    <button style={style} onClick={() => clickEvent()}>
       {value}
     </button>
   );
