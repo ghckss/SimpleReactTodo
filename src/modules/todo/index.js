@@ -14,7 +14,10 @@ export default handleActions(
       });
     },
     [types.UPDATE]: (state, action) => {
-      return produce(state, draftState => {});
+      return produce(state, draftState => {
+        const { content, index } = action.payload;
+        draftState.splice(index, 1, { content: content });
+      });
     },
     [types.REMOVE]: (state, action) => {
       return produce(state, draftState => {

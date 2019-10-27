@@ -7,7 +7,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  update: (content, index) => dispatch(actions.update(content, index)),
+  update: (content, index) =>
+    dispatch(actions.update({ content: content, index: index })),
   remove: index => dispatch(actions.remove(index))
 });
 
