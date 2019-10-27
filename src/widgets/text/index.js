@@ -16,7 +16,9 @@ const Text = ({
       type="text"
       value={value}
       onChange={e => changeEvent(e)}
-      onKeyDown={e => enterEvent(e)}
+      onKeyDown={e => {
+        if (e.keyCode === 13) enterEvent();
+      }}
       style={style}
     />
   );

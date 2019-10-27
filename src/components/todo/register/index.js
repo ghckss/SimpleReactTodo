@@ -13,13 +13,11 @@ class Register extends Component {
     });
   };
 
-  addTodo = e => {
-    if (e.keyCode === 13) {
-      this.props.create(this.state.content);
-      this.setState({
-        content: ""
-      });
-    }
+  addTodo = () => {
+    this.props.create(this.state.content);
+    this.setState({
+      content: ""
+    });
   };
 
   render() {
