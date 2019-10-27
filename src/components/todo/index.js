@@ -3,8 +3,8 @@ import ListContainer from "containers/todo/list";
 import RegisterContainer from "containers/todo/register";
 import "./index.scss";
 
-const Todo = () => {
-  const isContentNull = false;
+const Todo = ({ todo }) => {
+  const isContentNull = todo.length < 1;
   const list = isContentNull ? null : <ListContainer />;
   const className = isContentNull ? "content-center" : "content-top";
   return (

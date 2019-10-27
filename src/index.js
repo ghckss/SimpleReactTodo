@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import Todo from "components/todo";
+import TodoContainer from "containers/todo";
 import * as serviceWorker from "./serviceWorker";
 import { createStore } from "redux";
 import reducers from "./modules";
@@ -14,7 +14,7 @@ const store = createStore(
 
 ReactDOM.render(
   <Provider store={store}>
-    <Todo />
+    <TodoContainer />
   </Provider>,
   document.getElementById("root")
 );
