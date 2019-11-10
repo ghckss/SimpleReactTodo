@@ -1,11 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
-import TodoContainer from "containers/todo";
 import * as serviceWorker from "./serviceWorker";
+
 import { createStore } from "redux";
-import reducers from "./modules";
 import { Provider } from "react-redux";
+
+import TodoContainer from "containers/todo";
+import reducers from "./modules";
+
+import "./index.css";
 
 const store = createStore(
   reducers,
