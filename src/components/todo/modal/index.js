@@ -9,7 +9,7 @@ const Modal = ({ value, index, modalEvent, toggleEvent }) => {
     setContent(e.target.value);
   };
 
-  const updateTodo = () => {
+  const updateTodo = e => {
     modalEvent(content, index);
     closeModal();
   };
@@ -21,14 +21,18 @@ const Modal = ({ value, index, modalEvent, toggleEvent }) => {
   return (
     <div className="modal">
       <div className="modal-body">
-        <span className="explanation">수정</span>
+        <span className="modal-title">수정</span>
         <Input.Text
           value={content}
-          changeEvent={textChange}
-          enterEvent={updateTodo}
+          onKeyDown={e => {
+            if (e.keyCode === 13) {
+              updateTodo();
+            }
+          }}
+          onChange={textChange}
         />
-        <Button value="수정" clickEvent={updateTodo} />
-        <Button value="취소" clickEvent={closeModal} />
+        <Button value="수정" onClick={updateTodo} />
+        <Button value="취소" onClick={closeModal} />
       </div>
     </div>
   );

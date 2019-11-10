@@ -26,10 +26,10 @@ const List = ({ todo, update, remove }) => {
     return (
       <li key={index}>
         <span className="todo-value">{work.content}</span>
-        <Button value="삭제" clickEvent={() => removeItem(index)} />
+        <Button value="삭제" onClick={() => removeItem(index)} />
         <Button
           value="수정"
-          clickEvent={() => setModalValue(work.content, index)}
+          onClick={() => setModalValue(work.content, index)}
         />
       </li>
     );

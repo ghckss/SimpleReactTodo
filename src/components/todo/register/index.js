@@ -9,18 +9,16 @@ const Register = ({ create }) => {
     setContent(e.target.value);
   };
 
-  const addTodo = () => {
-    create(content);
-    setContent("");
+  const addTodo = e => {
+    if (e.keyCode === 13) {
+      create(content);
+      setContent("");
+    }
   };
 
   return (
     <div className="register">
-      <Input.Text
-        value={content}
-        changeEvent={textChange}
-        enterEvent={addTodo}
-      />
+      <Input.Text value={content} onKeyDown={addTodo} onChange={textChange} />
     </div>
   );
 };
