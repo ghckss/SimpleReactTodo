@@ -7,6 +7,7 @@ const Todo = ({ todo }) => {
   const isContentNull = todo.length < 1;
   const list = isContentNull ? null : <ListContainer />;
   const className = isContentNull ? "content-center" : "content-top";
+
   return (
     <div className={"todo " + className}>
       <div className="todo-header">

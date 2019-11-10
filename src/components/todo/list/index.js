@@ -1,57 +1,53 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import { Button } from "widgets";
 import Modal from "components/todo/modal";
 import "./index.scss";
 
-class List extends Component {
-  state = {
-    modal: false,
-    modalComponent: null
+const List = ({ todo, update, remove }) => {
+  const [status, setStatus] = useState(false);
+  const [value, setValue] = useState("");
+  const [index, setIndex] = useState("");
+
+  const toggleModal = () => {
+    setStatus(!status);
   };
 
-  toggleModal = (content, index, modalEvent) => {
-    this.setState({
-      modal: !this.state.modal,
-      modalComponent: !this.state.modal ? (
-        <Modal
-          value={content}
-          index={index}
-          modalEvent={modalEvent}
-          toggleEvent={this.toggleModal}
-        />
-      ) : null
-    });
+  const setModalValue = (content, index) => {
+    toggleModal();
+    setValue(content);
+    setIndex(index);
   };
 
-  removeItem = (index, remove) => {
+  const removeItem = index => {
     remove(index);
   };
 
-  render() {
-    const { todo, update, remove } = this.props;
-    const list = todo.map((work, index) => {
-      return (
-        <li key={index}>
-          <span className="todo-value">{work.content}</span>
-          <Button
-            value="삭제"
-            clickEvent={() => this.removeItem(index, remove)}
-          />
-          <Button
-            value="수정"
-            clickEvent={() => this.toggleModal(work.content, index, update)}
-          />
-        </li>
-      );
-    });
-
+  const list = todo.map((work, index) => {
     return (
-      <div className="list">
-        <ul>{list}</ul>
-        {this.state.modalComponent}
-      </div>
+      <li key={index}>
+        <span className="todo-value">{work.content}</span>
+        <Button value="삭제" clickEvent={() => removeItem(index)} />
+        <Button
+          value="수정"
+          clickEvent={() => setModalValue(work.content, index)}
+        />
+      </li>
     );
-  }
-}
+  });
+
+  return (
+    <div className="list">
+      <ul>{list}</ul>
+      {status && (
+        <Modal
+          value={value}
+          index={index}
+          modalEvent={update}
+          toggleEvent={toggleModal}
+        />
+      )}
+    </div>
+  );
+};
 
 export default List;

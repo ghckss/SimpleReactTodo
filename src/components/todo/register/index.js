@@ -1,36 +1,24 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import { Text } from "widgets";
 import "./index.scss";
 
-class Register extends Component {
-  state = {
-    content: ""
+const Register = ({ create }) => {
+  const [content, setContent] = useState("");
+
+  const textChange = e => {
+    setContent(e.target.value);
   };
 
-  textChange = e => {
-    this.setState({
-      content: e.target.value
-    });
+  const addTodo = () => {
+    create(content);
+    setContent("");
   };
 
-  addTodo = () => {
-    this.props.create(this.state.content);
-    this.setState({
-      content: ""
-    });
-  };
-
-  render() {
-    return (
-      <div className="register">
-        <Text
-          value={this.state.content}
-          changeEvent={this.textChange}
-          enterEvent={this.addTodo}
-        />
-      </div>
-    );
-  }
-}
+  return (
+    <div className="register">
+      <Text value={content} changeEvent={textChange} enterEvent={addTodo} />
+    </div>
+  );
+};
 
 export default Register;
