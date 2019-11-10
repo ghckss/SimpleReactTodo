@@ -12,24 +12,24 @@ const List = ({ todo, update, remove }) => {
     setStatus(!status);
   };
 
-  const setModalValue = (content, index) => {
+  const setModalInfos = (content, index) => {
     toggleModal();
     setValue(content);
     setIndex(index);
   };
 
-  const removeItem = index => {
+  const removeTodo = index => {
     remove(index);
   };
 
-  const list = todo.map((work, index) => {
+  const TodoList = todo.map((todo, index) => {
     return (
       <li key={index}>
-        <span className="todo-value">{work.content}</span>
-        <Button value="삭제" onClick={() => removeItem(index)} />
+        <span className="todo-value">{todo.content}</span>
+        <Button value="삭제" onClick={() => removeTodo(index)} />
         <Button
           value="수정"
-          onClick={() => setModalValue(work.content, index)}
+          onClick={() => setModalInfos(todo.content, index)}
         />
       </li>
     );
@@ -37,7 +37,7 @@ const List = ({ todo, update, remove }) => {
 
   return (
     <div className="list">
-      <ul>{list}</ul>
+      <ul>{TodoList}</ul>
       {status && (
         <Modal
           value={value}

@@ -3,22 +3,22 @@ import { Input } from "widgets";
 import "./index.scss";
 
 const Register = ({ create }) => {
-  const [content, setContent] = useState("");
+  const [value, setValue] = useState("");
 
-  const textChange = e => {
-    setContent(e.target.value);
+  const handleText = e => {
+    setValue(e.target.value);
   };
 
-  const addTodo = e => {
+  const appendTodo = e => {
     if (e.keyCode === 13) {
-      create(content);
-      setContent("");
+      create(value);
+      setValue("");
     }
   };
 
   return (
     <div className="register">
-      <Input.Text value={content} onKeyDown={addTodo} onChange={textChange} />
+      <Input.Text value={value} onKeyDown={appendTodo} onChange={handleText} />
     </div>
   );
 };
