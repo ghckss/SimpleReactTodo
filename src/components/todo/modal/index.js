@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Text, Button } from "widgets";
+import { Input, Button } from "widgets";
 import "./index.scss";
 
 const Modal = ({ value, index, modalEvent, toggleEvent }) => {
@@ -22,7 +22,7 @@ const Modal = ({ value, index, modalEvent, toggleEvent }) => {
     <div className="modal">
       <div className="modal-body">
         <span className="explanation">수정</span>
-        <Text
+        <Input.Text
           value={content}
           changeEvent={textChange}
           enterEvent={updateTodo}
