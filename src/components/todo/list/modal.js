@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Input, Button } from "widgets";
-import "./index.scss";
+import Modal from "widgets/modal";
 
-const Modal = ({ value, index, modalEvent, toggleEvent }) => {
+const EditModal = ({ value, index, postHandler, toggle }) => {
   const [content, setContent] = useState(value);
 
   const textChange = e => {
@@ -10,18 +10,17 @@ const Modal = ({ value, index, modalEvent, toggleEvent }) => {
   };
 
   const updateTodo = e => {
-    modalEvent(content, index);
+    postHandler(content, index);
     closeModal();
   };
 
   const closeModal = () => {
-    toggleEvent();
+    toggle();
   };
 
   return (
-    <div className="modal">
-      <div className="modal-body">
-        <span className="modal-title">수정</span>
+    <React.Fragment>
+      <Modal title="수정">
         <Input.Text
           value={content}
           onKeyDown={e => {
@@ -33,9 +32,9 @@ const Modal = ({ value, index, modalEvent, toggleEvent }) => {
         />
         <Button value="수정" onClick={updateTodo} />
         <Button value="취소" onClick={closeModal} />
-      </div>
-    </div>
+      </Modal>
+    </React.Fragment>
   );
 };
 
-export default Modal;
+export default EditModal;

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button } from "widgets";
-import Modal from "components/todo/modal";
+import EditModal from "./modal";
 import "./index.scss";
 
 const List = ({ todo, update, remove }) => {
@@ -39,11 +39,11 @@ const List = ({ todo, update, remove }) => {
     <div className="list">
       <ul>{TodoList}</ul>
       {status && (
-        <Modal
+        <EditModal
           value={value}
           index={index}
-          modalEvent={update}
-          toggleEvent={toggleModal}
+          postHandler={update}
+          toggle={toggleModal}
         />
       )}
     </div>
