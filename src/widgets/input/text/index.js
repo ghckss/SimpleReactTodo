@@ -7,8 +7,8 @@ const Text = ({ value, style, onKeyDown, onChange }) => {
       type="text"
       value={value}
       style={style}
-      onChange={e => onChange(e)}
-      onKeyDown={e => onKeyDown(e)}
+      onChange={onChange}
+      onKeyDown={onKeyDown}
     />
   );
 };

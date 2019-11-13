@@ -1,9 +1,11 @@
 import React, { useState } from "react";
-import { Button } from "widgets";
 import EditModal from "./modal";
+import { Button } from "widgets";
+import DragNDrop from "utils/dnd";
 import "./index.scss";
 
 const List = ({ todo, update, remove }) => {
+  const dnd = new DragNDrop();
   const [status, setStatus] = useState(false);
   const [value, setValue] = useState("");
   const [index, setIndex] = useState("");
@@ -22,14 +24,23 @@ const List = ({ todo, update, remove }) => {
     remove(index);
   };
 
-  const TodoList = todo.map((todo, index) => {
+  const TodoList = todo.map((work, index) => {
     return (
-      <li key={index}>
-        <span className="todo-value">{todo.content}</span>
+      <li
+        draggable="true"
+        key={index}
+        onDragStart={dnd.handleDragStart}
+        onDragLeave={dnd.handleDragLeave}
+        onDragOver={dnd.handleDragOver}
+        onDragEnter={dnd.handleDragEnter}
+        onDrop={dnd.handleDrop}
+        onDragEnd={dnd.handleDragEnd}
+      >
+        <span className="todo-value">{work.content}</span>
         <Button value="삭제" onClick={() => removeTodo(index)} />
         <Button
           value="수정"
-          onClick={() => setModalInfos(todo.content, index)}
+          onClick={() => setModalInfos(work.content, index)}
         />
       </li>
     );
