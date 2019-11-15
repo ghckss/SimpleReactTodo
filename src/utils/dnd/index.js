@@ -1,40 +1,26 @@
 class DragNDrop {
-  element = null;
+  handleDrag = e => {
+    const target = e.currentTarget;
+    const list = target.parentNode;
+    const x = e.clientX;
+    const y = e.clientY;
 
-  handleDragStart = e => {
-    this.element = e.currentTarget;
-    e.dataTransfer.setData("target", e.currentTarget.outerHTML);
-  };
+    target.classList.add("drag-sort-active");
 
-  handleDragEnter = e => {};
+    const draggableFromPoint = document
+      .elementFromPoint(x, y)
+      .closest('[draggable="true"]');
+    let swapItem = draggableFromPoint === null ? target : draggableFromPoint;
 
-  handleDragOver = e => {
-    e.preventDefault();
-  };
-
-  handleDragLeave = e => {};
-
-  handleDrop = e => {
-    if (this.element !== e.currentTarget) {
-      const dropHTML = e.dataTransfer.getData("target");
-      e.currentTarget.parentNode.removeChild(this.element);
-      e.currentTarget.insertAdjacentHTML("afterend", dropHTML);
-      const dropElem = e.currentTarget.nextSibling;
-      this.addDnDHandlers(dropElem);
-    } else {
-      return false;
+    if (list === swapItem.parentNode) {
+      swapItem =
+        swapItem !== target.nextSibling ? swapItem : swapItem.nextSibling;
+      list.insertBefore(target, swapItem);
     }
   };
 
-  handleDragEnd = e => {};
-
-  addDnDHandlers = element => {
-    element.addEventListener("dragstart", e => this.handleDragStart(e));
-    element.addEventListener("dragenter", e => this.handleDragEnter(e));
-    element.addEventListener("dragover", e => this.handleDragOver(e));
-    element.addEventListener("dragleave", e => this.handleDragLeave(e));
-    element.addEventListener("drop", e => this.handleDrop(e));
-    element.addEventListener("dragend", e => this.handleDragEnd(e));
+  handleDragEnd = e => {
+    e.target.classList.remove("drag-sort-active");
   };
 }
 

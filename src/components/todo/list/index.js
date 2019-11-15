@@ -29,11 +29,7 @@ const List = ({ todo, update, remove }) => {
       <li
         draggable="true"
         key={index}
-        onDragStart={dnd.handleDragStart}
-        onDragLeave={dnd.handleDragLeave}
-        onDragOver={dnd.handleDragOver}
-        onDragEnter={dnd.handleDragEnter}
-        onDrop={dnd.handleDrop}
+        onDrag={dnd.handleDrag}
         onDragEnd={dnd.handleDragEnd}
       >
         <span className="todo-value">{work.content}</span>
