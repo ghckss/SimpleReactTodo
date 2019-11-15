@@ -7,17 +7,18 @@ import "./index.scss";
 const List = ({ todo, update, remove }) => {
   const dnd = new DragNDrop();
   const [status, setStatus] = useState(false);
-  const [value, setValue] = useState("");
-  const [index, setIndex] = useState("");
+  const [todoInformation, setTodoInformation] = useState({});
 
   const toggleModal = () => {
     setStatus(!status);
   };
 
-  const setModalInfos = (content, index) => {
+  const setModalInfos = (value, index) => {
     toggleModal();
-    setValue(content);
-    setIndex(index);
+    setTodoInformation({
+      value: value,
+      index: index
+    });
   };
 
   const removeTodo = index => {
@@ -47,8 +48,8 @@ const List = ({ todo, update, remove }) => {
       <ul>{TodoList}</ul>
       {status && (
         <EditModal
-          value={value}
-          index={index}
+          value={todoInformation.value}
+          index={todoInformation.index}
           postHandler={update}
           toggle={toggleModal}
         />
